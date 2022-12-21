@@ -13,10 +13,14 @@ function addAgenda() {
   let planDay = +prompt("Enter Agenda Added Day:") - 1;
   let planTime = prompt("Enter Time:");
   let planDescription = prompt("Enter Description:");
-  Agenda[planDay] = newAgenda(planTime, planDescription);
+  Agenda[planDay] = AgendaString(planTime, planDescription);
+  //saveAgenda();
 }
-function newAgenda(){
-  
+function newAgenda(planTime, planDescription){
+  return {
+    time: planTime,
+    description: planDescription
+  };
 }
 
 function AgendaString(planTime, planDescription) {
@@ -30,7 +34,7 @@ function AgendaString(planTime, planDescription) {
 // drawing the Days
 let outputEl = document.getElementById('output');
 displayDiv()
-function displayDiv(agenda) {
+function displayDiv() {
     let outputStr = '';
     for (let i = 0; i < 30; i++){
       outputStr += createDiv(i);
@@ -41,7 +45,9 @@ function createDiv(i) {
   return `
     <div class="grid-item">
       <span class="day-number">${i+1}</span>
-      ${Agenda[i]}
+      <div class="agenda">
+        ${Agenda[i] ?? []}
+      </div>
     </div>
   `
 }
