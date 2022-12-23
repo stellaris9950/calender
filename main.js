@@ -5,7 +5,12 @@ let addBtn = document.getElementById('addAgenda');
 addBtn.addEventListener('click', addAgenda);
 
 let Agenda = [];
-
+createArrayWithin();
+function createArrayWithin() {
+  for (let i = 0; i < 30; i++){
+    Agenda.push([]);
+  }
+}
 
 
 // Add new agenda
@@ -13,7 +18,7 @@ function addAgenda() {
   let planDay = +prompt("Enter Agenda Added Day:") - 1;
   let planTime = prompt("Enter Time:");
   let planDescription = prompt("Enter Description:");
-  Agenda[planDay] = AgendaString(planTime, planDescription);
+  Agenda[planDay].push(AgendaString(planTime, planDescription));
   //saveAgenda();
 }
 function newAgenda(planTime, planDescription){
