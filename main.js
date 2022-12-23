@@ -19,6 +19,7 @@ function addAgenda() {
   let planTime = prompt("Enter Time:");
   let planDescription = prompt("Enter Description:");
   Agenda[planDay].push(AgendaString(planTime, planDescription));
+  displayDiv();
   //saveAgenda();
 }
 function newAgenda(planTime, planDescription){
@@ -30,7 +31,7 @@ function newAgenda(planTime, planDescription){
 
 function AgendaString(planTime, planDescription) {
   return `
-    <span>${planTime}: ${planDescription}</sapn>
+    \n <span class="tasks">${planTime}: ${planDescription}</sapn>
   `;
 }
 
@@ -42,16 +43,28 @@ displayDiv()
 function displayDiv() {
     let outputStr = '';
     for (let i = 0; i < 30; i++){
-      outputStr += createDiv(i);
+      outputStr += createDiv(i, Agenda[i]);
     }
     outputEl.innerHTML = outputStr;
 }
-function createDiv(i) {
+
+
+// function displayAgenda(){
+//   let agendaDisplay = ``
+//   for (let i = 0; i < 30; i++){
+//     for (let n = 0; n < Agenda[i].length; n++){
+//       agendaDisplay += Agenda[i][n] ?? [];
+//     }
+//   }
+//   return agendaDisplay;
+// }
+
+function createDiv(i, dayTasksArray) {
   return `
     <div class="grid-item">
       <span class="day-number">${i+1}</span>
       <div class="agenda">
-        ${Agenda[i] ?? []}
+      ${dayTasksArray}
       </div>
     </div>
   `
